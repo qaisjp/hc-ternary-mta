@@ -11,7 +11,7 @@ addEventHandler('onResourceStart', resourceRoot, function()
             return outputDebugString('Could not find router' .. tostring(i))
         end
 
-        wifiObjects[i] = wifi
+        gamestate.wifiObjects[i] = wifi
     end
 end)
 
