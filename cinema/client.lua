@@ -1,5 +1,6 @@
 local sw, sh = guiGetScreenSize() 
-local browser = createBrowser(sw, sh, false, false)
+local browser
+
 outputChatBox('Cinema loaded.')
 function render()
 	local x, y, z = 2464.24561, -1645.59924, 230.33594
@@ -7,8 +8,21 @@ function render()
 	dxDrawImage(0, 0, sw, sh, browser, 0, 0, 0, tocolor(255,255,255,255), true)
 end
 
-addEventHandler('onClientBrowserCreated', browser, function()
+function loadCinemaURL()
 	outputChatBox("Browser loaded.")
-	loadBrowserURL(browser, 'https://youtube.com')
+	loadBrowserURL(browser, 'https://hackcambridge.com/live')
 	addEventHandler('onClientPreRender', root, render)
+end
+
+addEventHandler('onClientResourceStart', resourceRoot, function()
+	requestBrowserDomains({'hackcambridge.com'})
+end)
+
+addEventHandler('onClientBrowserWhitelistChange', root, function(_, newDomains)
+	if newDomains[1] ~= 'hackcambridge.com' then
+		return
+	end
+
+	browser = createBrowser(sw, sh, false, false)
+	addEventHandler('onClientBrowserCreated', browser, loadCinemaURL)
 end)
