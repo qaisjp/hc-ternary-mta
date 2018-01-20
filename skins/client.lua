@@ -4,7 +4,7 @@
 function onStart()
     outputDebugString("Loading skins..")
     for _, skin in ipairs(skins) do
-    local filename = 'crogrl.txd'
+    local filename = 'crogrl3.txd'
     local id = 194
     local txd = engineLoadTXD(filename)
     if not engineImportTXD(txd, id) then
