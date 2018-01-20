@@ -1,4 +1,5 @@
 function onStart()
+    outputDebugString("Loading skins..")
     local filename = 'wmydrug.txd'
     local id = 29
     local txd = engineLoadTXD(filename)
