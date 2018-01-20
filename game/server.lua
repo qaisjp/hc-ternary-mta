@@ -3,11 +3,10 @@ local gamestate = {
     wifiObjects = {},
 }
 
+-- Well Stacked Pizza Co spawnpoints
+-- Interior 5
 local spawnpoints = {
-    {2460.83496, -1635.53442, 200.08281},
-    {2459.38159, -1635.71252, 200.08281},
-    {2457.32324, -1636.10168, 200.08281},
-    {2454.28906, -1636.53101, 200.09010}
+    {372.35, -133.35, 1000.45}
 }
 local spawnIndex = math.random(#spawnpoints)
 
@@ -31,7 +30,9 @@ addEventHandler('hc:onPlayerReady', root, function()
     outputChatBox('Welcome to Hackathon Simulator Cambridge.', source)
 
     local x, y, z = unpack(spawnpoints[spawnIndex])
-    spawnPlayer(source, x, y, z, 180, skins[skinIndex])
+    spawnPlayer(source, x, y, z, 180, skins[skinIndex], 5)
+    setCameraTarget(source)
+    fadeCamera(source, true)
 
     spawnIndex = spawnIndex + 1
     skinIndex = skinIndex + 1
