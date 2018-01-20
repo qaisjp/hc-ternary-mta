@@ -15,6 +15,8 @@ local labels = {
     "Add a Bictoin node"
 }
 local startTime = 0
+local startTimeAlert = 0
+
 function shuffle(array)
     local n, random, j = table.getn(array), math.random
     for i=1, n do
@@ -39,6 +41,9 @@ function showScreen()
     for i,v in pairs(shuffle(labels)) do
         if(v == "Reboot the wifi") then
             rightBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+        elseif (v == "Send Missile Alert Test Message") then
+            alertBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+            addEventHandler("onClientGUIClick", alertBtn, sendAlertToTheServer, false)
         else
             fakeBtn = guiCreateButton((i -1) % 2 * 210+ 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
         end
@@ -55,6 +60,20 @@ end
 
 local screenX,screenY = guiGetScreenSize()
 
+function sendAlertToTheServer()
+    triggerServerEvent ( "onHawaiiAlertSent", resourceRoot)
+end
+
+
+
+
+
+
+function showAlert()
+    startTimeAlert = getTickCount()
+end
+
+
 function renderText()
 	
 	
@@ -65,7 +84,15 @@ function renderText()
         dxDrawText ( text, screenX * .41, screenY * .1, screenX, screenY, tocolor(255,255,255), 2)
     end
     
+    if(currentCount < startTimeAlert + 10000) then
+        dxDrawImage ( screenX * .35, screenY * .1, 368, 159, 'hawaii.jpg', angle, 0, 0 )
+    end
+
 end
+
+
+addEvent('onHawaiiAlertReceived', true)
+addEventHandler('onHawaiiAlertReceived', root, showAlert)
 
 addEventHandler ( "onClientRender", root, renderText )
 addCommandHandler("mini", showScreen)
