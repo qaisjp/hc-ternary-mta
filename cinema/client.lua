@@ -10,12 +10,21 @@ end
 
 function loadCinemaURL()
 	outputChatBox("Browser loaded.")
-	loadBrowserURL(browser, 'https://youtube.com/live')
+	loadBrowserURL(browser, 'https://youtube.com/')
 	addEventHandler('onClientPreRender', root, render)
 end
 
+function loadBrowser()
+	browser = createBrowser(sw, sh, false, false)
+	addEventHandler('onClientBrowserCreated', browser, loadCinemaURL)
+end
+
 addEventHandler('onClientResourceStart', resourceRoot, function()
-	requestBrowserDomains({'hackcambridge.com'})
+	if isBrowserDomainBlocked('hackcambridge.com') then
+		requestBrowserDomains({'hackcambridge.com'})
+	else
+		loadBrowser()
+	end
 end)
 
 addEventHandler('onClientBrowserWhitelistChange', root, function(newDomains)
@@ -23,6 +32,5 @@ addEventHandler('onClientBrowserWhitelistChange', root, function(newDomains)
 		return
 	end
 
-	browser = createBrowser(sw, sh, false, false)
-	addEventHandler('onClientBrowserCreated', browser, loadCinemaURL)
+	loadBrowser()
 end)
