@@ -8,7 +8,6 @@ function onStart()
 
     for k, v in pairs(modified_skins) do
         local txd = engineLoadTXD(v)
-            outputDebugString('Could not load txd for ' ..)
         local success = engineImportTXD(txd, k)
         if not success then
             outputDebugString("Importing ID " .. tostring(k) .. " failed")
