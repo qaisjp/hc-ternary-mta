@@ -2,4 +2,8 @@
     <script src="hud_c.lua" type="client" />
     <script src="hud_s.lua" type="server" />
     <file src="slack.png"/>
+    <file src="real_neutral.png"/>
+    <file src="happy_neutral.png"/>
+    <file src="happy.png"/>
+    <file src="sad.png"/>
 </meta>

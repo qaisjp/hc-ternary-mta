@@ -29,6 +29,17 @@ end
 
 function onProgressReceived(progress)
     outputDebugString('changing progress ' .. tostring(progress))
+    local image = ""
+    if(progress > 80) then
+        image = "happy.png"
+    elseif(progress > 60) then
+        image = "happy_neutral.png"
+    elseif(progress > 40) then
+        image = "real_neutral.png"
+    else
+        image = "sad.png"
+    end
+    
     guiProgressBarSetProgress(progressBar, progress)
 end
 
@@ -88,7 +99,8 @@ function createNotificationWindow(index, message)
 end
 
 function createSatisfactionProgressBar()
-    progressBar = guiCreateProgressBar( margin, margin, 0.4, 0.03, true, nil ) --create the gui-progressbar
+    progressBar = guiCreateProgressBar( margin + 0.1, margin + 0.05, 0.4, 0.03, true, nil ) --create the gui-progressbar
+    emotionImage = guiCreateStaticImage(0, 0, 0.1, 0.2, "sad.png", true, nil )
 end
 
 

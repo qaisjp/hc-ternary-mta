@@ -26,7 +26,7 @@ function shuffle(array)
     return array
 end
 
-function showScreen()
+function showFixScreen()
     showCursor(true)
     local Width = 0.35
     local Height = 0.50
@@ -48,13 +48,40 @@ function showScreen()
             fakeBtn = guiCreateButton((i -1) % 2 * 210+ 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
         end
     end
-    addEventHandler("onClientGUIClick", rightBtn, removeScreen, false)
+    addEventHandler("onClientGUIClick", rightBtn, function()
+        removeScreen("Wifi rebooted!")
+    end, false)
 end
 
-function removeScreen()
+
+
+function showWorkingScreen()
+    showCursor(true)
+    local Width = 0.35
+    local Height = 0.20
+
+	-- define the X and Y positions of the window
+    local X = 0.30
+    local Y = 0.25
+	-- create the window and save its element value into the variable 'wdwLogin'
+	-- click on the function's name to read its documentation
+    wdwGame = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
+
+    turnOffBtn = guiCreateButton(30, 30,200,40, "DANGER: Turn the Wifi Off", false, wdwGame)
+    quitBtn = guiCreateButton(240, 30,200,40, "Close", false, wdwGame)
+
+    addEventHandler("onClientGUIClick", turnOffBtn, function()
+        removeScreen("Wifi has been turned off!")
+    end, false)
+    addEventHandler("onClientGUIClick", quitBtn, function()
+        removeScreen("Aborted")
+    end, false)
+end
+
+function removeScreen(textToPut)
     destroyElement(wdwGame)
     startTime = getTickCount()
-    text = "Rebooted the wifi!"
+    text = textToPut
     showCursor(false)
 end
 
@@ -80,7 +107,7 @@ function renderText()
 	currentCount = getTickCount ()
     
     if(currentCount < startTime + 5000) then
-        dxDrawRectangle (screenX *.40, screenY * .09, 250, 50, tocolor(0,0,0,150))
+        dxDrawRectangle (screenX *.40, screenY * .09, 400, 50, tocolor(0,0,0,150))
         dxDrawText ( text, screenX * .41, screenY * .1, screenX, screenY, tocolor(255,255,255), 2)
     end
     
@@ -95,4 +122,5 @@ addEvent('onHawaiiAlertReceived', true)
 addEventHandler('onHawaiiAlertReceived', root, showAlert)
 
 addEventHandler ( "onClientRender", root, renderText )
-addCommandHandler("mini", showScreen)
+addCommandHandler("miniW", showWorkingScreen)
+addCommandHandler("miniF", showFixScreen)
