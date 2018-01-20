@@ -9,10 +9,10 @@ local spawnpoints = {
     {2457.32324, -1636.10168, 200.08281},
     {2454.28906, -1636.53101, 200.09010}
 }
-local spawnIndex = 1
+local spawnIndex = math.random(#spawnpoints)
 
 local skins = {29, 194}
-local skinIndex = 1
+local skinIndex = math.random(#skins)
 
 addEventHandler('onResourceStart', resourceRoot, function()
     -- Load wifiObjects
@@ -29,7 +29,9 @@ end)
 addEvent('hc:onPlayerReady', true)
 addEventHandler('hc:onPlayerReady', root, function()
     outputChatBox('Welcome to Hackathon Simulator Cambridge.', source)
-    spawnPlayer(source, spawnpoints[spawnIndex], 180, skins[skinIndex])
+
+    local pos = spawnpoints[spawnIndex]
+    spawnPlayer(source, pos.x, pos.y, pos.z, 180, skins[skinIndex])
 
     spawnIndex = spawnIndex + 1
     skinIndex = skinIndex + 1
