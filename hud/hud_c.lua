@@ -39,7 +39,7 @@ function onProgressReceived(progress)
     else
         image = "sad.png"
     end
-    
+    guiStaticImageLoadImage(emotionImage, image)
     guiProgressBarSetProgress(progressBar, progress)
 end
 
