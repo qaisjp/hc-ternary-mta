@@ -6,22 +6,15 @@ modified_skins = {
 function onStart()
     outputDebugString("Loading skins..")
 
-    for k, v in ipairs(modified_skins) do
+    for k, v in pairs(modified_skins) do
         local txd = engineLoadTXD(v)
+            outputDebugString('Could not load txd for ' ..)
         local success = engineImportTXD(txd, k)
         if not success then
             outputDebugString("Importing ID " .. tostring(k) .. " failed")
         end
-
     end
 
-
-    -- local filename = 'crogrl3.txd'
-    -- local id = 194
-    -- local txd = engineLoadTXD(filename)
-    -- if not engineImportTXD(txd, id) then
-    --     outputDebugString("Importing ID " .. tostring(id) .. " failed")
-    -- end
 end
 
 addEventHandler('onClientResourceStart', resourceRoot, onStart)
