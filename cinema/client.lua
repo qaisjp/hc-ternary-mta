@@ -18,7 +18,7 @@ addEventHandler('onClientResourceStart', resourceRoot, function()
 	requestBrowserDomains({'hackcambridge.com'})
 end)
 
-addEventHandler('onClientBrowserWhitelistChange', root, function(_, newDomains)
+addEventHandler('onClientBrowserWhitelistChange', root, function(newDomains)
 	if newDomains[1] ~= 'hackcambridge.com' then
 		return
 	end
