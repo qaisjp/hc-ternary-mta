@@ -1,4 +1,5 @@
 <meta>
     <file src='wmydrug.txd' />
+    <file src='crogrl3.txd' />
     <script src='client.lua' type='client' />
 </meta>

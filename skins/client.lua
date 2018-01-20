@@ -1,7 +1,11 @@
+-- local skins = {
+--     {29, 'wmydrug.txd'}
+-- }
 function onStart()
     outputDebugString("Loading skins..")
-    local filename = 'wmydrug.txd'
-    local id = 29
+    for _, skin in ipairs(skins) do
+    local filename = 'crogrl.txd'
+    local id = 194
     local txd = engineLoadTXD(filename)
     if not engineImportTXD(txd, id) then
         outputDebugString("Importing ID " .. tostring(id) .. " failed")
