@@ -6,7 +6,6 @@ local gamestate = {
 -- Well Stacked Pizza Co spawnpoints
 -- Interior 5
 local spawnpoints = {
-    {372.35, -133.35, 1000.45}
     {379.55991, -115.55063, 1000.45},
     {376.55991, -115.55063, 1000.45},
     {373.55991, -115.55063, 1000.45}
