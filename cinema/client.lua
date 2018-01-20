@@ -1,5 +1,5 @@
 local sw, sh = guiGetScreenSize() 
-local browser = createBrowser(sw, sh, false, true)
+local browser = createBrowser(sw, sh, false, false)
 outputChatBox('Cinema loaded.')
 function render()
 	local x, y, z = 2464.24561, -1645.59924, 230.33594
