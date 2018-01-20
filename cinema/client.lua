@@ -10,7 +10,7 @@ end
 
 function loadCinemaURL()
 	outputChatBox("Browser loaded.")
-	loadBrowserURL(browser, 'https://youtube.com/')
+	loadBrowserURL(browser, 'https://hackcambridge.com/live')
 	addEventHandler('onClientPreRender', root, render)
 end
 
