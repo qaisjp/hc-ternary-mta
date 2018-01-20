@@ -10,6 +10,8 @@ local spawnpoints = {
     {376.55991, -115.55063, 1000.45},
     {373.55991, -115.55063, 1000.45}
 }
+
+-- { 379.58090209961, -120.8191986084, 1002.2612915039, 379.58090209961, -20.819198608398, 1002.2612915039, 0, 70 }
 local spawnIndex = math.random(#spawnpoints)
 
 local skins = {29, 194}
@@ -33,7 +35,7 @@ addEventHandler('hc:onPlayerReady', root, function()
 
     local x, y, z = unpack(spawnpoints[spawnIndex])
     spawnPlayer(source, x, y, z, 180, skins[skinIndex], 5)
-    setCameraTarget(source)
+    setCameraMatrix(source, x, y-5, z+2, x, y, z+2, 0, 70)
     fadeCamera(source, true)
 
     spawnIndex = spawnIndex + 1
