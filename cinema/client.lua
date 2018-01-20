@@ -8,6 +8,7 @@ function render()
 end
 
 addEventHandler('onClientBrowserCreated', browser, function()
+	outputChatBox("Browser loaded.")
 	loadBrowserURL(browser, 'https://hackcambridge.com/live')
 	addEventHandler('onClientPreRender', root, render)
 end)
