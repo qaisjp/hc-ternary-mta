@@ -6,7 +6,7 @@ modified_skins = {
 function onStart()
     outputDebugString("Loading skins..")
 
-    for k, v in modified_skins do
+    for k, v in ipairs(modified_skins) do
         local txd = engineLoadTXD(v)
         local success = engineImportTXD(txd, k)
         if not success then
