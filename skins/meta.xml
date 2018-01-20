@@ -1,4 +1,4 @@
 <meta>
     <file src='wmydrug.txd' />
-    <script src='client.lua' type='script'>
+    <script src='client.lua' type='script' />
 </meta>
