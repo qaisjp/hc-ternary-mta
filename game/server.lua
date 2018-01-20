@@ -31,7 +31,7 @@ addEventHandler('hc:onPlayerReady', root, function()
     outputChatBox('Welcome to Hackathon Simulator Cambridge.', source)
 
     local pos = spawnpoints[spawnIndex]
-    spawnPlayer(source, pos.x, pos.y, pos.z, 180, skins[skinIndex])
+    spawnPlayer(source, pos[0], pos[1], pos[2], 180, skins[skinIndex])
 
     spawnIndex = spawnIndex + 1
     skinIndex = skinIndex + 1
