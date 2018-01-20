@@ -1,0 +1,5 @@
+<meta>
+    <script src="hud_c.lua" type="client" />
+    <script src="hud_s.lua" type="server" />
+    <file src="slack.png"/>
+</meta>
