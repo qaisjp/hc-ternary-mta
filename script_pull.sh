@@ -1,0 +1,1 @@
+while true; do git pull --ff-only; sleep 1; done
