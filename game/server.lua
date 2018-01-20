@@ -1,4 +1,4 @@
-addEvent('onPlayerReady', true)
-addEventHandler('onPlayerReady', root, function()
+addEvent('hc:onPlayerReady', true)
+addEventHandler('hc:onPlayerReady', root, function()
     outputChatBox('Welcome to Hackathon Simulator Cambridge.')
 end)

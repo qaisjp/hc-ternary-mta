@@ -1,3 +1,3 @@
 addEventHandler('onClientResourceStart', resourceRoot, function()
-    triggerServerEvent('onPlayerReady', localPlayer)
+    triggerServerEvent('hc:onPlayerReady', localPlayer)
 end)
