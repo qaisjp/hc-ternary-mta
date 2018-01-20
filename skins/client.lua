@@ -3,7 +3,7 @@
 -- }
 function onStart()
     outputDebugString("Loading skins..")
-    for _, skin in ipairs(skins) do
+    --for _, skin in ipairs(skins) do
     local filename = 'crogrl3.txd'
     local id = 194
     local txd = engineLoadTXD(filename)
