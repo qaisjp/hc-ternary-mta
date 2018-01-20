@@ -9,6 +9,6 @@ end
 
 addEventHandler('onClientBrowserCreated', browser, function()
 	outputChatBox("Browser loaded.")
-	loadBrowserURL(browser, 'https://hackcambridge.com/live')
+	loadBrowserURL(browser, 'https://youtube.com')
 	addEventHandler('onClientPreRender', root, render)
 end)
