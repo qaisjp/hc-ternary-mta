@@ -39,6 +39,18 @@ function changeSkin(player, key)
     player.model = skins[index]
 end
 
+function toggleOverview(player)
+    local mode = not player:getData('hc:overview')
+    player:setData('hc:overview', mode)
+
+    toggleAllControls(player, not mode)
+    if mode then
+        setCameraMatrix(player, 2388.3056640625, -1645.4122314453, 237.34294128418, 2488.1032714844, -1646.4276123047, 231.06507873535, 0, 70 )
+    else
+        setCameraTarget(player)
+    end
+end
+
 local confirmSkin
 function confirmSkin(player)
     unbindKey(player, 'left', 'up', changeSkin)
@@ -46,18 +58,22 @@ function confirmSkin(player)
     unbindKey(player, 'enter', 'up', confirmSkin)
 
     triggerClientEvent('hc:selectedSkin', player)
-
-    -- toggleAllControls(player, true)
-    -- toggleAllControls(player, true)
-    -- setCameraTarget(player)
-    setCameraMatrix(player, 2388.3056640625, -1645.4122314453, 237.34294128418, 2488.1032714844, -1646.4276123047, 231.06507873535, 0, 70 )
+    
     player.interior = 0
     player.position = Vector3(2430, -1659, 229)
-    -- triggerClientEvent()
+    player:setData('hc:active', true)
+
+    player:setData('hc:overview', false)
+    toggleOverview(player)
+    bindKey(player, 'm', 'up', toggleOverview)
 end
 
 addEvent('hc:onPlayerReady', true)
 addEventHandler('hc:onPlayerReady', root, function()
+    if source:getData('hc:active') then
+        return
+    end
+
     outputChatBox('Welcome to Hackathon Simulator Cambridge.', source)
 
     local x, y, z = unpack(spawnpoints[spawnIndex])

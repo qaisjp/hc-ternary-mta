@@ -32,7 +32,6 @@ end)
 
 addEvent('hc:selectedSkin', true)
 addEventHandler('hc:selectedSkin', root, function()
-    destroyElement(txtCS)
 
     removeEventHandler('onClientRender', root, onRender)
 end)
