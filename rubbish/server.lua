@@ -15,6 +15,8 @@ function spawnRubbish()
     local x = math.random(xStart, xEnd)
     local y = -math.random(yStart, yEnd)
     local pickup = createPickup(x, y ,z, 3, 2674, 5000)
+    outputDebugString("Rubbish inital spawn")
+    activeRubbish = activeRubbish + 1
     table.insert(rubbish, pickup)
 end
 -- {2451.45044, -1628.72656, 228.42049}
