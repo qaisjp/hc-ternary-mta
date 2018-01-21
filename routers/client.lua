@@ -67,7 +67,7 @@ function showWorkingScreen()
     local Y = 0.25
 	-- create the window and save its element value into the variable 'wdwLogin'
 	-- click on the function's name to read its documentation
-    local window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
+    window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
 
     turnOffBtn = guiCreateButton(30, 30,200,40, "DANGER: Turn the Wifi Off", false, window)
     quitBtn = guiCreateButton(240, 30,200,40, "Close", false, window)
@@ -82,7 +82,7 @@ function showWorkingScreen()
     end, false)
 end
 
-function removeScreen(textToPut, window)
+function removeScreen(textToPut)
     destroyElement(window)
     renderTextAndSetStartTime(textToPut)
     showCursor(false)
