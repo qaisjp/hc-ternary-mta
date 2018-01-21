@@ -7,6 +7,9 @@ local sphere2 = nil
 local sphere3 = nil
 local sphere4 = nil
 
+hasMessage = false
+messageId = nil
+
 function sendHawaiiAlertToAllClient()
     triggerClientEvent('onHawaiiAlertReceived', root)
 end
@@ -16,7 +19,7 @@ addEventHandler( "onHawaiiAlertSent", resourceRoot, sendHawaiiAlertToAllClient )
 
 addEventHandler('onResourceStart', resourceRoot, function()
     router1 = getElementByID("router1")
-    setElementData(router1, "hc:broken", true, true)
+    setElementData(router1, "hc:broken", false, true)
     router2 = getElementByID("router2")
     setElementData(router2, "hc:broken", false, true)
     router3 = getElementByID("router3")
@@ -53,7 +56,38 @@ addEventHandler('onResourceStart', resourceRoot, function()
         addEventHandler ( "onColShapeHit", sphere, collisionHandler)
         addEventHandler ( "onColShapeLeave", sphere, leaveHandler)
     end
+
+    setTimer(checkWifi, 1000, 0)
 end)
+
+
+function checkWifi()
+    --outputDebugString("checking Wifi")
+    local wifiBroken = false
+    if (getElementData(router1, "hc:broken")) then
+        wifiBroken = true
+    elseif (getElementData(router2, "hc:broken")) then
+        wifiBroken = true
+    elseif(getElementData(router3, "hc:broken")) then
+        wifiBroken = true
+    elseif(getElementData(router4, "hc:broken")) then
+        wifiBroken = true
+    end
+    outputDebugString("hasMessage " .. tostring(hasMessage))
+    if( (hasMessage == false) and (wifiBroken == true)) then
+        hasMessage = true
+        messageId = exports.hud:addMessage("Wifi is broken again...")
+    elseif (wifiBroken == false) then
+        hasMessage = false
+        outputDebugString(tostring(messageId))
+        if(type(messageId) == 'string') then
+            outputDebugString("removing message")
+            exports.hud:removeMessage(messageId)
+            messageId = nil
+        end
+    end
+end
+
 
 function collisionHandler(thePlayer, _)
     outputDebugString("Hitted")
