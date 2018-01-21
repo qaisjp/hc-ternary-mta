@@ -42,6 +42,7 @@ function startPedgen()
                     for i=rand1_1, rand1 do
                         local ped = Ped(0, pos+mat.right*.1 + mat.right*.8 + mat.up*.1 - mat.forward*.8 + mat.forward*i*.8)
                         ped:setData('hc:sit_loop', true, true)
+                        -- ped:setData('hc:text', 'Wtf is going on?', true)
                         ped.frozen = true
                         ped.model = randomModel()
                         setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
