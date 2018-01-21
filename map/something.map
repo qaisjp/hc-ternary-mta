@@ -55,7 +55,7 @@
     <object id="object (BinNt07_LA) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="1337" doublesided="false" scale="1" dimension="0" posX="2423.1001" posY="-1624.7" posZ="228.10001" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (BinNt07_LA) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="1337" doublesided="false" scale="1" dimension="0" posX="2438.1001" posY="-1624.9" posZ="228.10001" rotX="0" rotY="0" rotZ="0"></object>
     <object id="object (Gen_doorEXT14) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="1535" doublesided="false" scale="1" dimension="0" posX="2445.1001" posY="-1667.1" posZ="227.39999" rotX="0" rotY="0" rotZ="180"></object>
-    <ped id="ped (1)" dimension="0" model="0" interior="0" rotZ="0.003" frozen="false" alpha="255" posX="2406.2" posY="-1635.2" posZ="223.8" rotX="0" rotY="0"></ped>
+
     <object id="object (kmb_rhymesbook) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="2894" doublesided="false" scale="1" dimension="0" posX="2417.1001" posY="-1665.7" posZ="228.2" rotX="0" rotY="0" rotZ="358"></object>
     <object id="object (kmb_rhymesbook) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="2894" doublesided="false" scale="1" dimension="0" posX="2424.3" posY="-1659.6" posZ="228.2" rotX="0" rotY="0" rotZ="357.995"></object>
     <object id="object (kmb_rhymesbook) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="2894" doublesided="false" scale="1" dimension="0" posX="2430.5" posY="-1653.9" posZ="228.2" rotX="0" rotY="0" rotZ="357.995"></object>

@@ -23,29 +23,40 @@ function setHappIncr(target)
     return diff
 end
 
+local unhappyText = ":( so unclean"
 function updateHappiness()
     local targ = 0
     if(activeRubbish >= bigThreshold) then
         outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
         targ = -0.125
-        if not notice then
-           notice = exports.hud:addMessage("People aren't happy with the mess.")
-        end 
     elseif activeRubbish >= minorThreshold then
         targ = 0
-        if notice then
-            exports.hud:removeMessage(notice)
-            notice = nil
-        end
     elseif activeRubbish <= 5 then
         targ = 1
-        if notice then
-            exports.hud:removeMessage(notice)
-            notice = nil
-        end
     end
 
     local change = setHappIncr(targ)
+
+    if change ~= 0 then
+        if not notice and targ < 0 then
+            notice = exports.hud:addMessage("People aren't happy with the mess.")
+            for _, ped in ipairs(getElementsByType('ped')) do
+                if math.random(20) <= 9 then
+                    ped:setData('hc:text', unhappyText, true)
+                    outputDebugString('text set')
+                end
+            end
+        elseif notice then
+            exports.hud:removeMessage(notice)
+            notice = nil
+            for _, ped in ipairs(getElementsByType('ped')) do
+                if ped:getData('hc:text') == unhappyText then
+                    ped:setData('hc:text', unhappyText, nil)
+                end
+            end
+        end
+    end
+
     outputDebugString('moving it by '..tostring(change))
     triggerEvent('hc:happiness:incrementMultiplier', root, change)
 end
@@ -72,6 +83,11 @@ addEventHandler('onResourceStop', resourceRoot, function()
     local change = setHappIncr(0)
     -- outputDebugString('moving it by '..tostring(change))
     triggerEvent('hc:happiness:incrementMultiplier', root, change)
+
+    if notice then
+        exports.hud:removeMessage(notice)
+        notice = nil
+    end
     
 end)
 
