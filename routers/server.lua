@@ -76,7 +76,7 @@ function checkWifi()
     -- outputDebugString("hasMessage " .. tostring(hasMessage))
     if( (hasMessage == false) and (wifiBroken == true)) then
         hasMessage = true
-        messageId = exports.hud:addMessage("Wifi is broken again...")
+        messageId = exports.hud:addMessage("@organizers: Guys are you serious? The wifi is down!")
     elseif (wifiBroken == false) then
         hasMessage = false
         -- outputDebugString(tostring(messageId))
