@@ -16,6 +16,8 @@ local labels = {
 }
 local startTime = 0
 local startTimeAlert = 0
+local routerId = 0
+
 
 function shuffle(array)
     local n, random, j = table.getn(array), math.random
@@ -132,11 +134,15 @@ addEventHandler('onHawaiiAlertReceived', root, showAlert)
 
 
 addEvent('renderMessageForRouter', true)
-addEventHandler('renderMessageForRouter', root, function(shouldShow, routerId)
+addEventHandler('renderMessageForRouter', root, function(shouldShow, rID)
     if(shouldShow) then
         renderTextAndSetStartTime("Press E to interact with the Router")
+        bindKey('e', 'up', getElementByID(rID).getElementData("hc:broken") and showFixScreen or showWorkingScreen)
+        routerId = rID
     else
         immediatlyRemoveText()
+        bindKey('e', 'up', nil)
+        routerId = 0
     end
 end)
 
