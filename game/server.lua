@@ -66,7 +66,7 @@ function confirmSkin(player)
     triggerClientEvent(player, 'hc:selectedSkin', player)
     
     player.interior = 0
-    player.position = Vector3(2430, -1659, 229)
+    player.position = Vector3(2438, -1645, 229)
 
     loadPlayer(player)
 
