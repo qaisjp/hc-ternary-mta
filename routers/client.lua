@@ -41,19 +41,21 @@ function showFixScreen()
 	    -- create the window and save its element value into the variable 'wdwLogin'
 	    -- click on the function's name to read its documentation
         local window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
-
+        local rightBtn
         for i,v in pairs(shuffle(labels)) do
             if(v == "Reboot the wifi") then
-                rightBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+                rightBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, window)
             elseif (v == "Send Missile Alert Test Message") then
-                alertBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+                local alertBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, window)
                 addEventHandler("onClientGUIClick", alertBtn, sendAlertToTheServer, false)
             else
-                fakeBtn = guiCreateButton((i -1) % 2 * 210+ 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+                local fakeBtn = guiCreateButton((i -1) % 2 * 210+ 30, math.floor(i / 2) * 50 + 30,200,40, v, false, window)
             end
         end
         addEventHandler("onClientGUIClick", rightBtn, function()
             removeScreen("Wifi rebooted!",window)
+            local router = getElementByID("router" .. tostring(routerId))
+            local broken = setElementData(router, "hc:broken", false)
         end, false)
         hasAScreen = true
     end
@@ -72,7 +74,6 @@ function showWorkingScreen()
         local Y = 0.25
 	    -- create the window and save its element value into the variable 'wdwLogin'
         -- click on the function's name to read its documentation
-        -- WHY DOES IT CREATE TWO WINDOWS????
         local window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
 
         local turnOffBtn = guiCreateButton(30, 30,200,40, "DANGER: Turn the Wifi Off", false, window)
@@ -81,6 +82,8 @@ function showWorkingScreen()
         addEventHandler("onClientGUIClick", turnOffBtn, function()
             outputDebugString("clicked")
             removeScreen("Wifi has been turned off!", window)
+            local router = getElementByID("router" .. tostring(routerId))
+            local broken = setElementData(router, "hc:broken", true)
         end, false)
         addEventHandler("onClientGUIClick", quitBtn, function()
             outputDebugString("clicked")
@@ -148,8 +151,16 @@ addEvent('renderMessageForRouter', true)
 addEventHandler('renderMessageForRouter', root, function(shouldShow, rID)
     if(shouldShow) then
         renderTextAndSetStartTime("Press E to interact with the Router")
-        outputDebugString(tostring(getElementData(getElementByID("router" .. tostring(rID)), "hc:broken")))
-        bindKey('e', 'up', showWorkingScreen)
+        local router = getElementByID("router" .. tostring(rID))
+        local broken = getElementData(router, "hc:broken")
+        bindKey('e', 'up', 
+        function()
+            if(broken) then
+                return showFixScreen()
+            else 
+                return showWorkingScreen()
+            end
+        end)
         routerId = rID
     else
         immediatlyRemoveText()
