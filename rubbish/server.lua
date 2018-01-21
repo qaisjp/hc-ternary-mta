@@ -10,7 +10,8 @@ local z = 228.42049
 function spawnRubbish()
     local x = math.random(xStart, xEnd)
     local y = -math.random(yStart, yEnd)
-    createPickup(x, y ,z, 3, 2674)
+    local pickup = createPickup(x, y ,z, 3, 2674, math.inf)
+    set
 end
 -- {2451.45044, -1628.72656, 228.42049}
 --  {2410.84326, -1665.77454, 228.42049}
