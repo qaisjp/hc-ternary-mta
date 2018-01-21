@@ -42,11 +42,7 @@ end
 function spawnRubbish()
     local x = math.random(xStart, xEnd)
     local y = -math.random(yStart, yEnd)
-<<<<<<< HEAD
-    local pickup = createPickup(x, y ,z, 3, 2674, math.random(20,150) * 1000)
-=======
     local pickup = createPickup(x, y ,z, 3, 1264, math.random(10, 45)*1000)
->>>>>>> 125d2dc3bff9247925271a6d35d7deca3ecc4253
     outputDebugString("Rubbish inital spawn")
     activeRubbish = activeRubbish + 1
     updateHappiness()
@@ -55,13 +51,8 @@ end
 -- {2451.45044, -1628.72656, 228.42049}
 --  {2410.84326, -1665.77454, 228.42049}
 addEventHandler('onResourceStart', resourceRoot, function()
-<<<<<<< HEAD
-    for i = 1,17 do
-        setTimer(spawnRubbish, math.random(20,150) * 1000, 1)
-=======
     for i = 1,15 do
         setTimer(spawnRubbish, math.random(5,45) * 1000, 1)
->>>>>>> 125d2dc3bff9247925271a6d35d7deca3ecc4253
     end
     
 end)
