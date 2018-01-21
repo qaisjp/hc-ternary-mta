@@ -2,9 +2,9 @@ local rubbish = {
 
 }
 local activeRubbish = 0
-
-bigThreshold = 13
-minorThreshold = 8
+local notice = nil
+local bigThreshold = 13
+local minorThreshold = 8
 
 local xStart = 2410.84326
 local yStart = 1628.72656
@@ -28,10 +28,21 @@ function updateHappiness()
     if(activeRubbish >= bigThreshold) then
         outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
         targ = -0.125
+        if not notice then
+           notice = exports.hud:addMessage("People aren't happy with the mess.")
+        end 
     elseif activeRubbish >= minorThreshold then
         targ = 0
+        if notice then
+            exports.hud:removeMessage(notice)
+            notice = nil
+        end
     elseif activeRubbish <= 5 then
         targ = 1
+        if notice then
+            exports.hud:removeMessage(notice)
+            notice = nil
+        end
     end
 
     local change = setHappIncr(targ)
