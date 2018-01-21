@@ -126,6 +126,29 @@ function handleClick()
                     if(pairFound == 4)then
                         destroyElement(wdwPizza)
                         showCursor(false)
+                        firstRow = {
+                            {
+                                name="cheese",
+                                image="pizza-box-cheese.png"
+                            },
+                            {
+                                name="pepperoni",
+                                image="pizza-box-pepperoni.png"
+                            },
+                            {
+                                name="meatball",
+                                image="pizza-box-meatballs.png"
+                            },
+                            {
+                                name="ham",
+                                image="pizza-box-ham.png"
+                            },
+                        }
+                        firstName = nil
+                    firstImage = nil
+                    firstIndex = nil
+                    secondName = nil
+                    oldSource = nil
                         --WINNING
                     end
             else
