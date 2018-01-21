@@ -23,7 +23,15 @@ function setHappIncr(target)
     return diff
 end
 
+
 local unhappyText = ":( so unclean"
+function unloadpedtexts()
+    for _, ped in ipairs(getElementsByType('ped')) do
+        if ped:getData('hc:text') == unhappyText then
+            ped:setData('hc:text', false, true)
+        end
+    end
+end
 function updateHappiness()
     local targ = 0
     if(activeRubbish >= bigThreshold) then
@@ -53,11 +61,7 @@ function updateHappiness()
         elseif notice then
             exports.hud:removeMessage(notice)
             notice = nil
-            for _, ped in ipairs(getElementsByType('ped')) do
-                if ped:getData('hc:text') == unhappyText then
-                    ped:setData('hc:text', false, true)
-                end
-            end
+            unloadpedtexts()
         end
     end
 
@@ -92,6 +96,8 @@ addEventHandler('onResourceStop', resourceRoot, function()
         exports.hud:removeMessage(notice)
         notice = nil
     end
+
+    unloadpedtexts()
     
 end)
 
