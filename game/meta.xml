@@ -1,4 +1,11 @@
 <meta>
     <script src='client.lua' type='client'/>
     <script src='server.lua' type='server'/>
+
+    <include resource="map" />
+    <include resource="freeroam" />
+    <include resource="hud" />
+    <include resource="routers" />
+    <include resource="skins" />
+    <include resource="cinema" />
 </meta>
