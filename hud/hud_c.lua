@@ -15,6 +15,9 @@ local hasSatisfactionBeenChanged = true
 
 
 function onMessagesReceived(list)
+    if #list > #messages then
+        playSound('slack.mp3')
+    end
     for _, msg in ipairs(messages) do
         destroyElement(msg.window)
     end
