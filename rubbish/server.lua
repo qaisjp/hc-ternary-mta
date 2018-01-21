@@ -33,6 +33,7 @@ end)
 
 addEventHandler('onPlayerPickupHit', resourceRoot, function()
     activeRubbish = activeRubbish - 1
+    outputDebugString("Rubbish reduced" .. tostring(activeRubbish))
     if(activeRubbish < treshold) then
         outputDebugString("Rubbish is okay" .. tostring(activeRubbish))
     end
