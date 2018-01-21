@@ -63,7 +63,7 @@ function confirmSkin(player)
     unbindKey(player, 'right', 'up', changeSkin)
     unbindKey(player, 'enter', 'up', confirmSkin)
 
-    triggerClientEvent('hc:selectedSkin', player)
+    triggerClientEvent(player, 'hc:selectedSkin', player)
     
     player.interior = 0
     player.position = Vector3(2430, -1659, 229)
@@ -96,7 +96,7 @@ addEventHandler('hc:onPlayerReady', root, function()
     bindKey(source, "right", "up", changeSkin)
     bindKey(source, 'enter', 'up', confirmSkin)
 
-    triggerClientEvent('hc:selectingSkin', source)
+    triggerClientEvent(source, 'hc:selectingSkin', source)
     spawnIndex = spawnIndex + 1
     skinIndex = skinIndex + 1
 

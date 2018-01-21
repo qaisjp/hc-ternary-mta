@@ -14,7 +14,7 @@ function onRender()
 end
 
 addEvent('hc:selectingSkin', true)
-addEventHandler('hc:selectingSkin', root, function()
+addEventHandler('hc:selectingSkin', localPlayer, function()
     -- local Width = 0.35
     -- local Height = 0.20
 
@@ -31,7 +31,7 @@ addEventHandler('hc:selectingSkin', root, function()
 end)
 
 addEvent('hc:selectedSkin', true)
-addEventHandler('hc:selectedSkin', root, function()
+addEventHandler('hc:selectedSkin', localPlayer, function()
 
     removeEventHandler('onClientRender', root, onRender)
 end)
