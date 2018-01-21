@@ -1,5 +1,10 @@
 local physTables = {}
 
+function randomModel()
+    local ids = {46, 194, 233, 250, 116, 29}
+    return(ids[math.random(#ids)])
+end
+
 function startPedgen()
     outputDebugString('Starting pedgen...')
 
@@ -36,13 +41,17 @@ function startPedgen()
                     local rand2_1 = math.random(0, 1)
                     for i=rand1_1, rand1 do
                         local ped = Ped(0, pos+mat.right*.1 + mat.right*.8 + mat.up*.1 - mat.forward*.8 + mat.forward*i*.8)
+                        ped:setData('hc:sit_loop', true, true)
                         ped.frozen = true
+                        ped.model = randomModel()
                         setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
                     end
 
                     for i=rand2_1, rand2 do
                         local ped = Ped(0, pos+mat.right*.1 - mat.right*.8 + mat.up*.1 - mat.forward*.8 + mat.forward*i*.8)
+                        ped:setData('hc:sit_loop', true, true)
                         ped.frozen = true
+                        ped.model = randomModel()
                         ped.rotation = Vector3(0, 0, 180)
                         setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
                     end
