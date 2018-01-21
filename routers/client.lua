@@ -146,8 +146,7 @@ addEventHandler('renderMessageForRouter', root, function(shouldShow, rID)
     else
         immediatlyRemoveText()
         --removeScreen("Aborted")
-        bindKey('e', 'up', function()
-        end)
+        unbindKey('e')
         routerId = 0
     end
 end)
