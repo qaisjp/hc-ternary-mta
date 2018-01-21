@@ -36,7 +36,7 @@ function changeSkin(player, key)
         index = (direction == 1) and 1 or #skins
     end
     player:setData('spawn-select:skin', index)
-    player.model = skins[skinIndex]
+    player.model = skins[index]
 end
 
 addEvent('hc:onPlayerReady', true)
@@ -51,7 +51,7 @@ addEventHandler('hc:onPlayerReady', root, function()
     toggleAllControls(source, false)
     fadeCamera(source, true)
 
-    setElementData(source, 'spawn-select:skin', skinIndex)
+    source:setData('spawn-select:skin', skinIndex)
     bindKey(source, "left", "up", changeSkin)
     bindKey(source, "right", "up", changeSkin)
 
