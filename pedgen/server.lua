@@ -37,12 +37,14 @@ function startPedgen()
                     for i=rand1_1, rand1 do
                         local ped = Ped(0, pos+mat.right*.1 + mat.right*.8 + mat.up*.1 - mat.forward*.8 + mat.forward*i*.8)
                         ped.frozen = true
+                        ped.model = 46
                         setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
                     end
 
                     for i=rand2_1, rand2 do
                         local ped = Ped(0, pos+mat.right*.1 - mat.right*.8 + mat.up*.1 - mat.forward*.8 + mat.forward*i*.8)
                         ped.frozen = true
+                        ped.model = 233
                         ped.rotation = Vector3(0, 0, 180)
                         setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
                     end
