@@ -3,7 +3,8 @@ local rubbish = {
 }
 local activeRubbish = 0
 
-treshold = 13
+bigThreshold = 13
+minorThreshold = 7
 
 local xStart = 2410.84326
 local yStart = 1628.72656
@@ -16,8 +17,9 @@ function spawnRubbish()
     local y = -math.random(yStart, yEnd)
     local pickup = createPickup(x, y ,z, 3, 2674, 5000)
     outputDebugString("Rubbish inital spawn")
-    if(activeRubbish >= treshold) then
+    if(activeRubbish >= bigThreshold) then
         outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
+        triggerEvent('hc:happiness:incrementMultiplier', root, -1)
     end
     activeRubbish = activeRubbish + 1
     table.insert(rubbish, pickup)
@@ -26,7 +28,7 @@ end
 --  {2410.84326, -1665.77454, 228.42049}
 addEventHandler('onResourceStart', resourceRoot, function()
     for i = 1,17 do
-        setTimer(spawnRubbish, math.random(20,250) * 1000, 1)
+        setTimer(spawnRubbish, math.random(5,45) * 1000, 1)
     end
     
 end)
@@ -34,14 +36,16 @@ end)
 addEventHandler('onPlayerPickupHit', root, function()
     activeRubbish = activeRubbish - 1
     outputDebugString("Rubbish reduced" .. tostring(activeRubbish))
-    if(activeRubbish < treshold) then
+    if(activeRubbish < bigThreshold) then
         outputDebugString("Rubbish is okay" .. tostring(activeRubbish))
+        triggerEvent('hc:happiness:incrementMultiplier', root, 1)
     end
 end)
+
 addEventHandler ( "onPickupSpawn", resourceRoot, function()
     outputDebugString("Rubbish spawn")
     activeRubbish = activeRubbish + 1
-    if(activeRubbish >= treshold) then
+    if(activeRubbish >= bigThreshold) then
         outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
     end
 end)

@@ -1,6 +1,9 @@
 local gamestate = {
     wifiStates = {true, true, true, true},
     wifiObjects = {},
+    happiness = 100,
+    multiplier = 0,
+    happinessTimer = nil,
 }
 
 -- Well Stacked Pizza Co spawnpoints
@@ -17,6 +20,17 @@ local spawnIndex = math.random(#spawnpoints)
 
 local skins = {29, 194, 46, 233, 250}
 
+function updateHappiness()
+    gamestate.happiness = gamestate.happiness + (5*gamestate.multiplier)
+    gamestate.happiness = math.min(math.max(0, gamestate.happiness), 100)
+    exports.hud:setProgress(gamestate.happiness)
+end
+
+addEvent('hc:happiness:incrementMultiplier')
+addEventHandler('hc:happiness:incrementMultiplier', root, function(mult)
+    gamestate.multiplier = gamestate.multiplier + mult
+end)
+
 addEventHandler('onResourceStart', resourceRoot, function()
     -- Load wifiObjects
     for i=1, 4 do
@@ -27,6 +41,9 @@ addEventHandler('onResourceStart', resourceRoot, function()
 
         gamestate.wifiObjects[i] = wifi
     end
+
+    exports.hud:setProgress(gamestate.happiness)
+    gamestate.happinessTimer = setTimer(updateHappiness, 500, 0)
 end)
 
 function changeSkin(player, key)
