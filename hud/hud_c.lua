@@ -22,13 +22,13 @@ function onMessagesReceived(list)
     
     lastY = margin
     for i, msg in ipairs(messages) do
-        outputDebugString('creating msg ' .. msg.id)
+        -- outputDebugString('creating msg ' .. msg.id)
         createNotificationWindow(i, msg)
     end
 end
 
 function onProgressReceived(progress)
-    outputDebugString('changing progress ' .. tostring(progress))
+    -- outputDebugString('changing progress ' .. tostring(progress))
     local image = ""
     if(progress > 80) then
         image = "happy.png"
