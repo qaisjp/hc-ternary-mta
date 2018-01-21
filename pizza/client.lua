@@ -79,7 +79,7 @@ function renderWindow()
 	
 	-- create the window and save its element value into the variable 'wdwLogin'
 	-- click on the function's name to read its documentation
-    wdwPizza = guiCreateWindow(X, Y, Width, Height, "Make Pizza :click:", true)
+    wdwPizza = guiCreateWindow(X, Y, Width, Height, "Find the pizza quickly the hackers are hungry!!:", true)
 
     firstRow = shuffle(firstRow)
     secondRow = shuffle(secondRow)
