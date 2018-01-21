@@ -32,7 +32,7 @@ local firstIndex = nil
 local firstName = nil
 local secondName = nil
 local oldSource = nil
-
+local pairFound = 0
 
 function TableConcat(t1,t2)
     for i=1,#t2 do
@@ -129,6 +129,10 @@ function handleClick()
                     firstIndex = nil
                     secondName = nil
                     oldSource = nil
+                    pairFound = pairFound + 1
+                    if(pairFound == 4)then
+                        destroyElement(wdwPizza)
+                        --WINNING
                 end, 1000, 1)
             end
         end
