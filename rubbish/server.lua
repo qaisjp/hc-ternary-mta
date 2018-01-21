@@ -32,14 +32,18 @@ function updateHappiness()
     elseif activeRubbish >= minorThreshold then
         targ = 0
     elseif activeRubbish <= 5 then
-        targ = 1
+        targ = 0
     end
 
     local change = setHappIncr(targ)
 
     if change ~= 0 then
         if not notice and targ < 0 then
+<<<<<<< HEAD
             notice = exports.hud:addMessage("@channels: We need to clean the venue!!")
+=======
+            notice = exports.hud:addMessage("@hc-henrymercer: GUYS I think we need to clean up this mess!")
+>>>>>>> 29fa47a1f4498b7def5e07cccd236527bd084b41
             for _, ped in ipairs(getElementsByType('ped')) do
                 if math.random(20) <= 9 then
                     ped:setData('hc:text', unhappyText, true)
@@ -95,6 +99,7 @@ end)
 addEventHandler('onPlayerPickupHit', root, function()
     activeRubbish = activeRubbish - 1
     outputDebugString("Rubbish reduced" .. tostring(activeRubbish))
+    -- triggerEvent('hc:happiness:incrementH', root, 0.5)
     updateHappiness()
 end)
 

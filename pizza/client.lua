@@ -101,6 +101,9 @@ function handleClick()
     local v = getElementData(source, "hc:object")
     local i = getElementData(source, "hc:index")
     outputDebugString("clicked " .. v["name"])
+    if secondName then
+        return
+    end
     if(not firstName) then
         firstName = v["name"]
         firstImage = source
@@ -118,6 +121,37 @@ function handleClick()
                 secondName = nil
                 removeEventHandler("onClientGUIClick", firstImage, handleClick)
                 removeEventHandler("onClientGUIClick", source, handleClick)
+
+                pairFound = pairFound + 1
+                    if(pairFound == 4)then
+                        destroyElement(wdwPizza)
+                        showCursor(false)
+                        firstRow = {
+                            {
+                                name="cheese",
+                                image="pizza-box-cheese.png"
+                            },
+                            {
+                                name="pepperoni",
+                                image="pizza-box-pepperoni.png"
+                            },
+                            {
+                                name="meatball",
+                                image="pizza-box-meatballs.png"
+                            },
+                            {
+                                name="ham",
+                                image="pizza-box-ham.png"
+                            },
+                        }
+                        firstName = nil
+                    firstImage = nil
+                    firstIndex = nil
+                    secondName = nil
+                    oldSource = nil
+                    pairFound = 0
+                    triggerServerEvent('hc:pizza:won', localPlayer)
+                end
             else
                 outputDebugString("lost")
                 oldSource = source
@@ -129,10 +163,7 @@ function handleClick()
                     firstIndex = nil
                     secondName = nil
                     oldSource = nil
-                    pairFound = pairFound + 1
-                    if(pairFound == 4)then
-                        destroyElement(wdwPizza)
-                        --WINNING
+                    
                 end, 1000, 1)
             end
         end
@@ -140,6 +171,14 @@ function handleClick()
 end
 
 
-
+addEvent("hc:pizza", true)
+addEventHandler('hc:pizza', root, function()
+    renderWindow()
+end)
 
 addCommandHandler("pizza", renderWindow)
+
+addEventHandler('onClientResourceStart', resourceRoot, function()
+    local s = playSound3D('pizzatron.mp3', 375.82816, -115.50784, 1001.49219, true)
+    s.maxDistance = 15
+end)

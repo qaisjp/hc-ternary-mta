@@ -1,0 +1,7 @@
+<meta>
+    <file src='Hacker1.mp3' />
+    <file src='Hacker2.mp3' />
+    <file src='Hacker3.mp3' />
+    <file src='Hacker4.mp3' />
+    <script src='client.lua' type='client' />
+</meta>

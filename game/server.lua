@@ -2,7 +2,7 @@ local gamestate = {
     wifiStates = {true, true, true, true},
     wifiObjects = {},
     happiness = 100,
-    multiplier = 0,
+    multiplier = -0.05,
     happinessTimer = nil,
 }
 
@@ -20,8 +20,10 @@ local spawnIndex = math.random(#spawnpoints)
 
 local skins = {29, 194, 46, 233, 250}
 
-function updateHappiness()
-    gamestate.happiness = gamestate.happiness + (5*gamestate.multiplier)
+function updateHappiness(t)
+    if not t then
+        gamestate.happiness = gamestate.happiness + (5*gamestate.multiplier)
+    end
     gamestate.happiness = math.min(math.max(0, gamestate.happiness), 100)
     exports.hud:setProgress(gamestate.happiness)
 end
@@ -30,6 +32,14 @@ addEvent('hc:happiness:incrementMultiplier')
 addEventHandler('hc:happiness:incrementMultiplier', root, function(mult)
     gamestate.multiplier = gamestate.multiplier + mult
 end)
+
+
+addEvent('hc:happiness:incrementH')
+addEventHandler('hc:happiness:incrementH', root, function(mult)
+    gamestate.happiness = gamestate.happiness + mult
+    updateHappiness(true)
+end)
+
 
 addEventHandler('onResourceStart', resourceRoot, function()
     -- Load wifiObjects
@@ -83,7 +93,12 @@ function confirmSkin(player)
     triggerClientEvent(player, 'hc:selectedSkin', player)
     
     player.interior = 0
-    player.position = Vector3(2438, -1645, 229)
+
+    local vec = Vector3(2443.13794, -1645.13977, 228.42049)
+    vec = vec + Vector3(math.random(-5, 5), math.random(-5, 5), 0)
+
+    player.position = vec
+    
 
     loadPlayer(player)
 

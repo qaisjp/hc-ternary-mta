@@ -1,16 +1,32 @@
+local state ='skin'
 addEventHandler('onClientResourceStart', resourceRoot, function()
     triggerServerEvent('hc:onPlayerReady', localPlayer)
+    if localPlayer:getData('hc:active') then
+        state = 'pause'
+    end
+
+    addEventHandler('onClientRender', root, onRender)
 end)
 
 local sw, sh = guiGetScreenSize()
-
 function onRender()
-    dxDrawText(
-        "Press the left/right arrow keys to change your skin.",
-        0, sh * .8, sw, sh,
-        tocolor(255, 255, 255, 255), 2,
-        'default', 'center', 'top'
-    )
+    if state == 'skin' then
+        dxDrawText(
+            "Press the left/right arrow keys to change your skin.",
+            0, sh * .8, sw, sh,
+            tocolor(255, 255, 255, 255), 2,
+            'default', 'center', 'top'
+        )
+    elseif state == 'pause' and localPlayer:getData('hc:overview') then
+        dxDrawText(
+            "Press M to toggle this screen.\n Go to the red checkpoint to make pizza. This is how you get points."..
+            "\n\nMake sure you pick up the bin bags. Hackers don't like a messy venue, and you'll lose points."..
+            "\n\nIf an organiser (accidentally) breaks the WiFi, you need to find and reboot it.",
+            0, sh * .1, sw, sh,
+            tocolor(255, 255, 255, 255), 2,
+            'default', 'center', 'top'
+        )
+    end
 end
 
 addEvent('hc:selectingSkin', true)
@@ -27,11 +43,11 @@ addEventHandler('hc:selectingSkin', localPlayer, function()
     -- txtCS = guiCreateLabel(0, 0.8, 1, 0.6, , true)
     -- txtCS:setHorizontalAlign('center')
 
-    addEventHandler('onClientRender', root, onRender)
+    -- addEventHandler('onClientRender', root, onRender)
 end)
 
 addEvent('hc:selectedSkin', true)
 addEventHandler('hc:selectedSkin', localPlayer, function()
-
-    removeEventHandler('onClientRender', root, onRender)
+    state = 'pause'
+    -- removeEventHandler('onClientRender', root, onRender)
 end)
