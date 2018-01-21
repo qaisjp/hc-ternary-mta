@@ -32,7 +32,7 @@ function updateHappiness()
     elseif activeRubbish >= minorThreshold then
         targ = 0
     elseif activeRubbish <= 5 then
-        targ = 1
+        targ = 0
     end
 
     local change = setHappIncr(targ)
@@ -95,6 +95,7 @@ end)
 addEventHandler('onPlayerPickupHit', root, function()
     activeRubbish = activeRubbish - 1
     outputDebugString("Rubbish reduced" .. tostring(activeRubbish))
+    -- triggerEvent('hc:happiness:incrementH', root, 0.5)
     updateHappiness()
 end)
 

@@ -149,7 +149,7 @@ function handleClick()
                     firstIndex = nil
                     secondName = nil
                     oldSource = nil
-                        --WINNING
+                        triggerServerEvent('hc:pizza:won', localPlayer)
                     end
             else
                 outputDebugString("lost")
@@ -170,6 +170,9 @@ function handleClick()
 end
 
 
-
+addEvent("hc:pizza", true)
+addEventHandler('hc:pizza', root, function()
+    renderWindow()
+end)
 
 addCommandHandler("pizza", renderWindow)
