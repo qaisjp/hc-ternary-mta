@@ -27,9 +27,9 @@ function updateHappiness()
     local targ = 0
     if(activeRubbish >= bigThreshold) then
         outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
-        targ = -0.25
-    elseif activeRubbish >= minorThreshold then
         targ = -0.125
+    elseif activeRubbish >= minorThreshold then
+        targ = 0
     elseif activeRubbish <= 5 then
         targ = 1
     end
