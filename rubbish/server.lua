@@ -16,6 +16,9 @@ function spawnRubbish()
     local y = -math.random(yStart, yEnd)
     local pickup = createPickup(x, y ,z, 3, 2674, 5000)
     outputDebugString("Rubbish inital spawn")
+    if(activeRubbish >= treshold) then
+        outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
+    end
     activeRubbish = activeRubbish + 1
     table.insert(rubbish, pickup)
 end
