@@ -51,6 +51,11 @@ function toggleOverview(player)
     end
 end
 
+function loadPlayer(player)
+    player:setData('hc:active', true)
+    bindKey(player, 'm', 'up', toggleOverview)
+end
+
 local confirmSkin
 function confirmSkin(player)
     unbindKey(player, 'left', 'up', changeSkin)
@@ -61,16 +66,17 @@ function confirmSkin(player)
     
     player.interior = 0
     player.position = Vector3(2430, -1659, 229)
-    player:setData('hc:active', true)
+
+    loadPlayer(player)
 
     player:setData('hc:overview', false)
     toggleOverview(player)
-    bindKey(player, 'm', 'up', toggleOverview)
 end
 
 addEvent('hc:onPlayerReady', true)
 addEventHandler('hc:onPlayerReady', root, function()
     if source:getData('hc:active') then
+        loadPlayer(source)
         return
     end
 
