@@ -29,12 +29,12 @@ end)
 addEventHandler('onPlayerPickupHit', resourceRoot, function()
     activeRubbish = activeRubbish - 1
     if(activeRubbish < treshold) then
-        outputDebugString("Rubbish is okay")
+        outputDebugString("Rubbish is okay" .. tostring(activeRubbish))
     end
 end)
 addEventHandler ( "onPickupSpawn", resourceRoot, function()
     activeRubbish = activeRubbish + 1
     if(activeRubbish >= treshold) then
-        outputDebugString("Rubbish is bad")
+        outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
     end
 end)
