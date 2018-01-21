@@ -39,6 +39,17 @@ function changeSkin(player, key)
     player.model = skins[index]
 end
 
+local confirmSkin
+function confirmSkin(player)
+    unbindKey(player, 'left', 'up', changeSkin)
+    unbindKey(player, 'right', 'up', changeSkin)
+    unbindKey(player, 'enter', 'up', confirmSkin)
+    toggleAllControls(player, true)
+    setCameraTarget(player)
+    player.interior = 0
+    player.position = Vector3(2430, -1659, 229)
+end
+
 addEvent('hc:onPlayerReady', true)
 addEventHandler('hc:onPlayerReady', root, function()
     outputChatBox('Welcome to Hackathon Simulator Cambridge.', source)
@@ -54,6 +65,7 @@ addEventHandler('hc:onPlayerReady', root, function()
     source:setData('spawn-select:skin', skinIndex)
     bindKey(source, "left", "up", changeSkin)
     bindKey(source, "right", "up", changeSkin)
+    bindKey(source, 'enter', 'up', confirmSkin)
 
     spawnIndex = spawnIndex + 1
     skinIndex = skinIndex + 1
