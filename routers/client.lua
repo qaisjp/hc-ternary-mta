@@ -58,12 +58,6 @@ end
 
 
 function showWorkingScreen()
-    removeEventHandler('onClientGUIClick', turnOffBtn, function()
-        removeScreen("Wifi has been turned off!", window)
-    end)
-    removeEventHandler('onClientGUIClick', quitBtn, function()
-        removeScreen("Aborted", window)
-    end)
     showCursor(true)
     local Width = 0.35
     local Height = 0.20
