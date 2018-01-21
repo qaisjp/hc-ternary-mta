@@ -9,7 +9,7 @@ local xStart = 2410.84326
 local yStart = 1628.72656
 local xEnd = 2451.45044
 local yEnd = 1665.77454
-local z = 227.42049
+local z = 228.42049
 
 function spawnRubbish()
     local x = math.random(xStart, xEnd)
@@ -26,7 +26,7 @@ end
 --  {2410.84326, -1665.77454, 228.42049}
 addEventHandler('onResourceStart', resourceRoot, function()
     for i = 1,20 do
-        setTimer(spawnRubbish, math.random(20,150) * 1000, 1)
+        setTimer(spawnRubbish, math.random(20,60) * 1000, 1)
     end
     
 end)
