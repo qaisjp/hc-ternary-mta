@@ -1,4 +1,4 @@
-local sounds = {'Hacker1.mp3', 'Hacker2.mp3', 'Hacker3.mp3', 'Hacker2.mp3'}
+local sounds = {'Hacker1.mp3', 'Hacker2.mp3', 'Hacker3.mp3', 'Hacker4.mp3'}
 local soundPos = {
     {2431.02148, -1657.95178, 228.42049},
     {2413.02515, -1658.22644, 228.42049},
