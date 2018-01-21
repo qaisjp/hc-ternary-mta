@@ -57,6 +57,14 @@ addEventHandler('onResourceStart', resourceRoot, function()
     
 end)
 
+addEventHandler('onResourceStop', resourceRoot, function()
+    local change = setHappIncr(0)
+    -- outputDebugString('moving it by '..tostring(change))
+    triggerEvent('hc:happiness:incrementMultiplier', root, change)
+    
+end)
+
+
 addEventHandler('onPlayerPickupHit', root, function()
     activeRubbish = activeRubbish - 1
     outputDebugString("Rubbish reduced" .. tostring(activeRubbish))
