@@ -17,6 +17,7 @@ local labels = {
 local startTime = 0
 local startTimeAlert = 0
 local routerId = 0
+local hasAScreen = false
 
 
 function shuffle(array)
@@ -29,64 +30,71 @@ function shuffle(array)
 end
 
 function showFixScreen()
-    showCursor(true)
-    local Width = 0.35
-    local Height = 0.50
+    if(!hasAScreen) then
+        showCursor(true)
+        local Width = 0.35
+        local Height = 0.50
 
-	-- define the X and Y positions of the window
-    local X = 0.30
-    local Y = 0.25
-	-- create the window and save its element value into the variable 'wdwLogin'
-	-- click on the function's name to read its documentation
-    local window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
+	    -- define the X and Y positions of the window
+        local X = 0.30
+        local Y = 0.25
+	    -- create the window and save its element value into the variable 'wdwLogin'
+	    -- click on the function's name to read its documentation
+        local window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
 
-    for i,v in pairs(shuffle(labels)) do
-        if(v == "Reboot the wifi") then
-            rightBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
-        elseif (v == "Send Missile Alert Test Message") then
-            alertBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
-            addEventHandler("onClientGUIClick", alertBtn, sendAlertToTheServer, false)
-        else
-            fakeBtn = guiCreateButton((i -1) % 2 * 210+ 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+        for i,v in pairs(shuffle(labels)) do
+            if(v == "Reboot the wifi") then
+                rightBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+            elseif (v == "Send Missile Alert Test Message") then
+                alertBtn = guiCreateButton((i -1)% 2  * 210 + 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+                addEventHandler("onClientGUIClick", alertBtn, sendAlertToTheServer, false)
+            else
+                fakeBtn = guiCreateButton((i -1) % 2 * 210+ 30, math.floor(i / 2) * 50 + 30,200,40, v, false, wdwGame)
+            end
         end
+        addEventHandler("onClientGUIClick", rightBtn, function()
+            removeScreen("Wifi rebooted!",window)
+        end, false)
+        hasAScreen = true
     end
-    addEventHandler("onClientGUIClick", rightBtn, function()
-        removeScreen("Wifi rebooted!",window)
-    end, false)
 end
 
 
 
 function showWorkingScreen()
-    showCursor(true)
-    local Width = 0.35
-    local Height = 0.20
+    if(!hasAScreen) then
+        showCursor(true)
+        local Width = 0.35
+        local Height = 0.20
 
-	-- define the X and Y positions of the window
-    local X = 0.30
-    local Y = 0.25
-	-- create the window and save its element value into the variable 'wdwLogin'
-    -- click on the function's name to read its documentation
-    -- WHY DOES IT CREATE TWO WINDOWS????
-    local window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
+	    -- define the X and Y positions of the window
+        local X = 0.30
+        local Y = 0.25
+	    -- create the window and save its element value into the variable 'wdwLogin'
+        -- click on the function's name to read its documentation
+        -- WHY DOES IT CREATE TWO WINDOWS????
+        local window = guiCreateWindow(X, Y, Width, Height, "Wifi configuration tool", true)
 
-    local turnOffBtn = guiCreateButton(30, 30,200,40, "DANGER: Turn the Wifi Off", false, window)
-    local quitBtn = guiCreateButton(240, 30,200,40, "Close", false, window)
+        local turnOffBtn = guiCreateButton(30, 30,200,40, "DANGER: Turn the Wifi Off", false, window)
+        local quitBtn = guiCreateButton(240, 30,200,40, "Close", false, window)
 
-    addEventHandler("onClientGUIClick", turnOffBtn, function()
-        outputDebugString("clicked")
-        removeScreen("Wifi has been turned off!", window)
-    end, false)
-    addEventHandler("onClientGUIClick", quitBtn, function()
-        outputDebugString("clicked")
-        removeScreen("Aborted", window)
-    end, false)
+        addEventHandler("onClientGUIClick", turnOffBtn, function()
+            outputDebugString("clicked")
+            removeScreen("Wifi has been turned off!", window)
+        end, false)
+        addEventHandler("onClientGUIClick", quitBtn, function()
+            outputDebugString("clicked")
+            removeScreen("Aborted", window)
+        end, false)
+        hasAScreen = true
+    end
 end
 
 function removeScreen(textToPut, window)
     destroyElement(window)
     renderTextAndSetStartTime(textToPut)
     showCursor(false)
+    hasAScreen = false
 end
 
 local screenX,screenY = guiGetScreenSize()
