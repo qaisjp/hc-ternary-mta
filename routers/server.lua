@@ -37,21 +37,32 @@ addEventHandler('onResourceStart', resourceRoot, function()
     pos = router4.position
     sphere4 = createColSphere ( pos, 1 )
     sphere4:setData("hc:routerId", 4)
+
+    local routers = {
+        router1,
+        router2,
+        router3,
+        router4
+    }
+
+    for _, router in ipairs(routers) do    
+        addEventHandler ( "onColShapeHit", router, collisionHandler)
+        addEventHandler ( "onColShapeLeave", router, leaveHandler)
+    end
 end)
 
-addEventHandler ( "onColShapeHit", resourceRoot, function(thePlayer, _)
+function collisionHandler(thePlayer, _)
     outputDebugString("Hitted")
     local id = source:getData("hc:routerId")
     if getElementType ( thePlayer ) == "player" then
         triggerClientEvent(thePlayer, "renderMessageForRouter", root, true, id)
     end
-end)
+end
 
-
-addEventHandler ( "onColShapeLeave", resourceRoot, function(thePlayer, _)
+function leaveHandler(thePlayer,_)
     local id = source:getData("hc:routerId")
     if getElementType ( thePlayer ) == "player" then
         triggerClientEvent(thePlayer, "renderMessageForRouter", root, false, id)
     end
-end)
+end
 
