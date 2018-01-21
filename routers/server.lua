@@ -73,15 +73,15 @@ function checkWifi()
     elseif(getElementData(router4, "hc:broken")) then
         wifiBroken = true
     end
-    outputDebugString("hasMessage " .. tostring(hasMessage))
+    -- outputDebugString("hasMessage " .. tostring(hasMessage))
     if( (hasMessage == false) and (wifiBroken == true)) then
         hasMessage = true
         messageId = exports.hud:addMessage("Wifi is broken again...")
     elseif (wifiBroken == false) then
         hasMessage = false
-        outputDebugString(tostring(messageId))
-        if(type(messageId) == 'string') then
-            outputDebugString("removing message")
+        -- outputDebugString(tostring(messageId))
+        if messageId then
+            -- outputDebugString("removing message")
             exports.hud:removeMessage(messageId)
             messageId = nil
         end
