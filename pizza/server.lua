@@ -1,16 +1,3 @@
-addEventHandler('onResourceStart', resourceRoot, function()
-    pos = Vector3()
-    sphere1 = createColSphere ( pos, 3 )
-
-    local spheres = {
-        sphere1,
-    }
-
-    for _, sphere in ipairs(spheres) do    
-        addEventHandler ( "onColShapeHit", sphere, collisionHandler)
-        addEventHandler ( "onColShapeLeave", sphere, leaveHandler)
-    end
-end)
 
 
 addEventHandler('onResourceStart', resourceRoot, function()
@@ -55,4 +42,5 @@ addEvent('hc:pizza:won', true)
 addEventHandler('hc:pizza:won', root, function()
     source:setPosition(375.25470, -120.35140, 1001.49951)
     setCameraTarget(source, source)
+    triggerEvent('hc:happiness:incrementH', root, 20)
 end)

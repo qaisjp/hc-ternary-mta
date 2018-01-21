@@ -149,8 +149,9 @@ function handleClick()
                     firstIndex = nil
                     secondName = nil
                     oldSource = nil
-                        triggerServerEvent('hc:pizza:won', localPlayer)
-                    end
+                    pairFound = 0
+                    triggerServerEvent('hc:pizza:won', localPlayer)
+                end
             else
                 outputDebugString("lost")
                 oldSource = source
