@@ -31,11 +31,11 @@ end)
 
 function changeSkin(player, key)
     local direction = (key == 'left') and -1 or 1
-    local index = direction + player:getElementData('spawn-select:skin')
+    local index = direction + player:getData('spawn-select:skin')
     if index < 1 or index > #skins then
         index = (direction == 1) and 1 or #skins
     end
-    player:setElementData('spawn-select:skin', index)
+    player:setData('spawn-select:skin', index)
     player.model = skins[skinIndex]
 end
 
