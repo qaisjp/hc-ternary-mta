@@ -7,6 +7,7 @@ local sphere2 = nil
 local sphere3 = nil
 local sphere4 = nil
 
+local marker1, marker2, marker3, marker4
 hasMessage = false
 messageId = nil
 
@@ -61,6 +62,23 @@ addEventHandler('onResourceStart', resourceRoot, function()
 end)
 
 
+addEventHandler('onResourceStop', resourceRoot, function()
+    if wifiBroken then
+        triggerEvent('hc:happiness:incrementMultiplier', root, -1)
+    end
+end)
+
+addEvent('hc:create-marker', true)
+addEventHandler('hc:create-marker', root, function()
+    setElementData(source, 'marker', createMarker(source.position,'checkpoint',1,0,0, 255))
+end)
+
+addEvent('hc:del-marker', true)
+addEventHandler('hc:del-marker', root, function()
+    destroyElement(getElementData(source, 'marker'))
+end)
+
+
 function checkWifi()
     --outputDebugString("checking Wifi")
     local wifiBroken = false
@@ -77,6 +95,7 @@ function checkWifi()
     if( (hasMessage == false) and (wifiBroken == true)) then
         hasMessage = true
         messageId = exports.hud:addMessage("@hc-jared: WiFi is broken again...")
+        triggerEvent('hc:happiness:incrementMultiplier', root, -0.5)
     elseif (wifiBroken == false) then
         hasMessage = false
         -- outputDebugString(tostring(messageId))
@@ -84,6 +103,7 @@ function checkWifi()
             -- outputDebugString("removing message")
             exports.hud:removeMessage(messageId)
             messageId = nil
+            triggerEvent('hc:happiness:incrementMultiplier', root, 0.5)
         end
     end
 end
