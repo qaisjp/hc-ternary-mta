@@ -31,6 +31,7 @@ local firstImage = nil
 local firstIndex = nil
 local firstName = nil
 local secondName = nil
+local oldSource = nil
 
 
 function TableConcat(t1,t2)
@@ -44,19 +45,19 @@ end
 local firstRow = {
     {
         name="cheese",
-        image="cheese.png"
+        image="pizza-box-cheese.png"
     },
     {
         name="pepperoni",
-        image="pepperoni.png"
+        image="pizza-box-pepperoni.png"
     },
     {
         name="meatball",
-        image="meatball.png"
+        image="pizza-box-meatballs.png"
     },
     {
         name="ham",
-        image="ham.png"
+        image="pizza-box-ham.png"
     },
 }
 
@@ -88,7 +89,7 @@ function renderWindow()
     for i,v in pairs(pizzas) do
         
         -- create a label with their name on the scrollpane
-        local img = guiCreateStaticImage(((i - 1) % 4) * 0.25,  (math.floor((i - 1) / 4)) * 0.25 + 0.2 , 0.2, 0.2, "slack.png", true, wdwPizza)
+        local img = guiCreateStaticImage(((i - 1) % 4) * 0.25,  (math.floor((i - 1) / 4)) * 0.25 + 0.2 , 0.2, 0.2, "pizza-box.png", true, wdwPizza)
         setElementData(img, "hc:object", v)
         setElementData(img, "hc:index", i)
         --guiCreateStaticImage(0.1, 0.1 , 0.3, 0.3, "slack.png", true, wdwPizza)
@@ -115,22 +116,26 @@ function handleClick()
                 outputDebugString("won")
                 firstName = nil
                 secondName = nil
-                removeEventHandler("onClientGUIClick", firstImage, handleClick)))
-                removeEventHandler("onClientGUIClick", source, handleClick)))
+                removeEventHandler("onClientGUIClick", firstImage, handleClick)
+                removeEventHandler("onClientGUIClick", source, handleClick)
             else
                 outputDebugString("lost")
+                oldSource = source
                 setTimer(function()
-                    guiStaticImageLoadImage(firstImage,"back.png")
-                    guiStaticImageLoadImage(source, "back.png")
-                end, 2000)
-                firstName = nil
-                firstImage = nil
-                firstIndex = nil
-                secondName = nil
+                    guiStaticImageLoadImage(firstImage,"pizza-box.png")
+                    guiStaticImageLoadImage(oldSource, "pizza-box.png")
+                    firstName = nil
+                    firstImage = nil
+                    firstIndex = nil
+                    secondName = nil
+                    oldSource = nil
+                end, 1000, 1)
             end
         end
     end
 end
+
+
 
 
 addCommandHandler("pizza", renderWindow)

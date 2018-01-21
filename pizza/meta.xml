@@ -3,4 +3,9 @@
     <script src='server.lua' type='server'/>
     <script src='client.lua' type='client' />
     <file src="slack.png"/>
+    <file src="pizza-box-cheese.png"/>
+    <file src="pizza-box-ham.png"/>
+    <file src="pizza-box-meatballs.png"/>
+    <file src="pizza-box-pepperoni.png"/>
+    <file src="pizza-box.png"/>
 </meta>
