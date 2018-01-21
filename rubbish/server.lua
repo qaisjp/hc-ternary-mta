@@ -14,7 +14,7 @@ local z = 227.7
 function spawnRubbish()
     local x = math.random(xStart, xEnd)
     local y = -math.random(yStart, yEnd)
-    local pickup = createPickup(x, y ,z, 3, 2674, 5000)
+    local pickup = createPickup(x, y ,z, 3, 2674, math.random(20,150) * 1000)
     outputDebugString("Rubbish inital spawn")
     if(activeRubbish >= treshold) then
         outputDebugString("Rubbish is bad" .. tostring(activeRubbish))
@@ -26,7 +26,7 @@ end
 --  {2410.84326, -1665.77454, 228.42049}
 addEventHandler('onResourceStart', resourceRoot, function()
     for i = 1,17 do
-        setTimer(spawnRubbish, math.random(20,250) * 1000, 1)
+        setTimer(spawnRubbish, math.random(20,150) * 1000, 1)
     end
     
 end)
