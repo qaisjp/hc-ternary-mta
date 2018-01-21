@@ -7,8 +7,8 @@ local sw, sh = guiGetScreenSize()
 function onRender()
     dxDrawText(
         "Press the left/right arrow keys to change your skin.",
-        0, sh * .6, sw, sh,
-        tocolor(255, 255, 255, 255), 2
+        0, sh * .8, sw, sh,
+        tocolor(255, 255, 255, 255), 2,
         'default', 'center', 'top'
     )
 end
