@@ -42,7 +42,7 @@ end
 function spawnRubbish()
     local x = math.random(xStart, xEnd)
     local y = -math.random(yStart, yEnd)
-    local pickup = createPickup(x, y ,z, 3, 1362, math.random(10, 45)*1000)
+    local pickup = createPickup(x, y ,z, 3, 1264, math.random(10, 45)*1000)
     outputDebugString("Rubbish inital spawn")
     activeRubbish = activeRubbish + 1
     updateHappiness()
