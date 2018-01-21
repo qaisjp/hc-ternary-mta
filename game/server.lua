@@ -44,10 +44,12 @@ function confirmSkin(player)
     unbindKey(player, 'left', 'up', changeSkin)
     unbindKey(player, 'right', 'up', changeSkin)
     unbindKey(player, 'enter', 'up', confirmSkin)
-    toggleAllControls(player, true)
-    setCameraTarget(player)
+    -- toggleAllControls(player, true)
+    -- setCameraTarget(player)
+    setCameraMatrix(player, 2388.3056640625, -1645.4122314453, 237.34294128418, 2488.1032714844, -1646.4276123047, 231.06507873535, 0, 70 )
     player.interior = 0
     player.position = Vector3(2430, -1659, 229)
+    -- triggerClientEvent()
 end
 
 addEvent('hc:onPlayerReady', true)
