@@ -9,7 +9,7 @@ local xStart = 2410.84326
 local yStart = 1628.72656
 local xEnd = 2451.45044
 local yEnd = 1665.77454
-local z = 228
+local z = 227.7
 
 function spawnRubbish()
     local x = math.random(xStart, xEnd)
