@@ -35,7 +35,7 @@ function changeSkin(player, key)
     if index < 1 or index > #skins then
         index = (direction == 1) and 1 or #skins
     end
-
+    player:setElementData('spawn-select:skin', index)
     player.model = skins[skinIndex]
 end
 
