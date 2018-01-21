@@ -28,6 +28,7 @@ function merge(t1, t2)
     return t1
 end
 local firstImage = nil
+local firstIndex = nil
 local firstName = nil
 local secondName = nil
 
@@ -43,19 +44,19 @@ end
 local firstRow = {
     {
         name="cheese",
-        image="back.png"
+        image="cheese.png"
     },
     {
         name="pepperoni",
-        image="back.png"
+        image="pepperoni.png"
     },
     {
         name="meatball",
-        image="back.png"
+        image="meatball.png"
     },
     {
         name="ham",
-        image="back.png"
+        image="ham.png"
     },
 }
 
@@ -89,6 +90,7 @@ function renderWindow()
         -- create a label with their name on the scrollpane
         local img = guiCreateStaticImage(((i - 1) % 4) * 0.25,  (math.floor((i - 1) / 4)) * 0.25 + 0.2 , 0.2, 0.2, "slack.png", true, wdwPizza)
         setElementData(img, "hc:object", v)
+        setElementData(img, "hc:index", i)
         --guiCreateStaticImage(0.1, 0.1 , 0.3, 0.3, "slack.png", true, wdwPizza)
         addEventHandler("onClientGUIClick", img, handleClick, false)
     end
@@ -96,22 +98,36 @@ end
 
 function handleClick()
     local v = getElementData(source, "hc:object")
+    local i = getElementData(source, "hc:index")
     outputDebugString("clicked " .. v["name"])
     if(not firstName) then
         firstName = v["name"]
         firstImage = source
+        firstIndex = i
+        guiStaticImageLoadImage(source, v["image"])
     else
-        secondName = v["name"]
-        if (firstName == secondName)then
-            outputDebugString("won")
-            firstName = nil
-            secondName = nil
-            removeEventHandler("onClientGUIClick", firstImage, handleClick)))
-            removeEventHandler("onClientGUIClick", source, handleClick)))
+        if(i == firstIndex)then
+            return
         else
-            outputDebugString("lost")
-            firstName = nil
-            secondName = nil
+            secondName = v["name"]
+            guiStaticImageLoadImage(source, v["image"])
+            if (firstName == secondName)then
+                outputDebugString("won")
+                firstName = nil
+                secondName = nil
+                removeEventHandler("onClientGUIClick", firstImage, handleClick)))
+                removeEventHandler("onClientGUIClick", source, handleClick)))
+            else
+                outputDebugString("lost")
+                setTimer(function()
+                    guiStaticImageLoadImage(firstImage,"back.png")
+                    guiStaticImageLoadImage(source, "back.png")
+                end, 2000)
+                firstName = nil
+                firstImage = nil
+                firstIndex = nil
+                secondName = nil
+            end
         end
     end
 end
