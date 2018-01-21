@@ -5,8 +5,10 @@ addEventHandler('onClientResourceStart', resourceRoot, function()
         engineSetModelLODDistance(model, 300)   -- Set maximum draw distance
     end
 
-    for _, ped in ipairs(getElementsByType('ped', getResourceDynamicElementRoot(thisResource))) do
-        setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
+    for _, ped in ipairs(getElementsByType('ped')) do
+        if ped:getData('hc:sit_loop') then
+            setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
+        end
     end
 end)
 
