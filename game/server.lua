@@ -44,6 +44,7 @@ function confirmSkin(player)
     unbindKey(player, 'left', 'up', changeSkin)
     unbindKey(player, 'right', 'up', changeSkin)
     unbindKey(player, 'enter', 'up', confirmSkin)
+    destroyElement(wdwCS)
     toggleAllControls(player, true)
     setCameraTarget(player)
     player.interior = 0
@@ -66,6 +67,17 @@ addEventHandler('hc:onPlayerReady', root, function()
     bindKey(source, "left", "up", changeSkin)
     bindKey(source, "right", "up", changeSkin)
     bindKey(source, 'enter', 'up', confirmSkin)
+
+    local Width = 0.35
+    local Height = 0.20
+
+    -- define the X and Y positions of the window
+    local X = 0.30
+    local Y = 0.25
+    -- create the window and save its element value into the variable 'wdwLogin'
+    -- click on the function's name to read its documentation
+    wdwCS = guiCreateWindow(X, Y, Width, Height, "Choose your organizer!", true)
+    txtCS = guiCreateLabel(0.02, 0.04, 0.94, 0.2, "Press the left/right arrow keys to change your skin.", true, wdwCS)
 
     spawnIndex = spawnIndex + 1
     skinIndex = skinIndex + 1
