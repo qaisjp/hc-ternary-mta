@@ -6,8 +6,8 @@ addEventHandler('onClientResourceStart', resourceRoot, function()
     end
 
     for _, ped in ipairs(getElementsByType('ped', getResourceDynamicElementRoot(thisResource))) do
-        setPedSkin(ped, 46)
+        setElementModel(ped, 46)
         setTimer(setPedAnimation, 50, 1, ped, 'food', 'ff_sit_loop', -1, true, false, false, false)
     end
-end)
+end
 
