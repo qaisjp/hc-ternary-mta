@@ -121,6 +121,17 @@ end
 addEvent('onHawaiiAlertReceived', true)
 addEventHandler('onHawaiiAlertReceived', root, showAlert)
 
-addEventHandler ( "onClientRender", root, renderText )
+
+addEvent('renderMessageForRouter', true)
+addEventHandler('renderMessageForRouter', root, function(shouldShow, routerId)
+    outputDebugString(tostring(shouldShow) .. " and " .. tostring(routerId))
+end)
+
+
+
+
 addCommandHandler("miniW", showWorkingScreen)
 addCommandHandler("miniF", showFixScreen)
+
+
+addEventHandler ( "onClientRender", root, renderText )
