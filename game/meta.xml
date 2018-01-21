@@ -2,12 +2,12 @@
     <oop>true</oop>
     <script src='client.lua' type='client'/>
     <script src='server.lua' type='server'/>
-    <!-- <script src='utils.lua' type='shared'/> -->
-
+    <!-- <script src='utils.lua' type='shared'/>     -->
+<!-- 
     <include resource="map" />
     <include resource="freeroam" />
     <include resource="hud" />
     <include resource="routers" />
     <include resource="skins" />
-    <include resource="cinema" />
+    <include resource="cinema" /> -->
 </meta>
