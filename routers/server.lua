@@ -22,20 +22,20 @@ addEventHandler('onResourceStart', resourceRoot, function()
     local pos = nil
 
     pos = router1.position
-    sphere1 = createColSphere ( pos, 1 )
+    sphere1 = createColSphere ( pos, 3 )
     sphere1:setData("hc:routerId", 1)
 
     pos = router2.position
-    sphere2 = createColSphere ( pos, 1 )
+    sphere2 = createColSphere ( pos, 3 )
     sphere2:setData("hc:routerId", 2)
 
     pos = router3.position
-    sphere3 = createColSphere ( pos, 1 )
+    sphere3 = createColSphere ( pos, 3 )
     sphere3:setData("hc:routerId", 3)
 
     
     pos = router4.position
-    sphere4 = createColSphere ( pos, 1 )
+    sphere4 = createColSphere ( pos, 3 )
     sphere4:setData("hc:routerId", 4)
 
     local routers = {
