@@ -3,7 +3,8 @@ modified_skins = {
     [194] = 'crogrl3.txd',
     [46] = 'hmyri.txd',
     [233] = 'swfyst.txd',
-    [250] = 'swmycr.txd'
+    [250] = 'swmycr.txd',
+    [116] = 'vla3.txd'
 }
 
 function onStart()

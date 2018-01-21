@@ -4,5 +4,6 @@
     <file src='hmyri.txd' />
     <file src='swfyst.txd' />
     <file src='swmycr.txd' />
+    <file src='vla3.txd' />
     <script src='client.lua' type='client' />
 </meta>
