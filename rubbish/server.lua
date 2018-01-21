@@ -51,7 +51,7 @@ function updateHappiness()
             notice = nil
             for _, ped in ipairs(getElementsByType('ped')) do
                 if ped:getData('hc:text') == unhappyText then
-                    ped:setData('hc:text', unhappyText, nil)
+                    ped:setData('hc:text', false, true)
                 end
             end
         end
