@@ -15,10 +15,10 @@ addEvent( "onHawaiiAlertSent", true )
 addEventHandler( "onHawaiiAlertSent", resourceRoot, sendHawaiiAlertToAllClient )
 
 addEventHandler('onResourceStart', resourceRoot, function()
-    router1 = getElementById("router1")
-    router2 = getElementById("router2")
-    router3 = getElementById("router3")
-    router4 = getElementById("router4")
+    router1 = getElementByID("router1")
+    router2 = getElementByID("router2")
+    router3 = getElementByID("router3")
+    router4 = getElementByID("router4")
     local pos = nil
 
     pos = router1.position
