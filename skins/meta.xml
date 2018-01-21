@@ -1,5 +1,8 @@
 <meta>
     <file src='wmydrug.txd' />
     <file src='crogrl3.txd' />
+    <file src='hmyri.txd.txd' />
+    <file src='swfyst.txd' />
+    <file src='swmycr.txd' />
     <script src='client.lua' type='client' />
 </meta>
