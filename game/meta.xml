@@ -1,6 +1,7 @@
 <meta>
     <script src='client.lua' type='client'/>
     <script src='server.lua' type='server'/>
+    <script src='utils.lua' type='shared'/>
 
     <include resource="map" />
     <include resource="freeroam" />
