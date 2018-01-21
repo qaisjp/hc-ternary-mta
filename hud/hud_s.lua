@@ -1,7 +1,7 @@
 local messages = {}
 
 function addMessage(msg)
-    local id = tostring(getTickCount()) .. tostring(math.random())
+    local id = createElement('hud-msg')
 
     table.insert(messages, {
         id = id,
@@ -16,8 +16,10 @@ end
 function removeMessage(id)
     local index = -1
 
-    for i, v in ipairs(messages) do
+    for i, v in pairs(messages) do
+        outputDebugString(inspect(v))
         if v.id == id then
+            id:destroy()
             index = i
             break
         end
