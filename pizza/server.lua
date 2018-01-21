@@ -1,5 +1,5 @@
 addEventHandler('onResourceStart', resourceRoot, function()
-    pos = router1.position
+    pos = Vector3(369.05975, -118.99402, 1000.55)
     sphere1 = createColSphere ( pos, 3 )
 
     local spheres = {

@@ -101,6 +101,9 @@ function handleClick()
     local v = getElementData(source, "hc:object")
     local i = getElementData(source, "hc:index")
     outputDebugString("clicked " .. v["name"])
+    if secondName then
+        return
+    end
     if(not firstName) then
         firstName = v["name"]
         firstImage = source
@@ -118,6 +121,13 @@ function handleClick()
                 secondName = nil
                 removeEventHandler("onClientGUIClick", firstImage, handleClick)
                 removeEventHandler("onClientGUIClick", source, handleClick)
+
+                pairFound = pairFound + 1
+                    if(pairFound == 4)then
+                        destroyElement(wdwPizza)
+                        showCursor(false)
+                        --WINNING
+                    end
             else
                 outputDebugString("lost")
                 oldSource = source
@@ -129,10 +139,7 @@ function handleClick()
                     firstIndex = nil
                     secondName = nil
                     oldSource = nil
-                    pairFound = pairFound + 1
-                    if(pairFound == 4)then
-                        destroyElement(wdwPizza)
-                        --WINNING
+                    
                 end, 1000, 1)
             end
         end
