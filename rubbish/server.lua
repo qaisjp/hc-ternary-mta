@@ -39,7 +39,7 @@ function updateHappiness()
 
     if change ~= 0 then
         if not notice and targ < 0 then
-            notice = exports.hud:addMessage("People aren't happy with the mess.")
+            notice = exports.hud:addMessage("@hc-henrymercer: GUYS I think we need to clean up this mess!")
             for _, ped in ipairs(getElementsByType('ped')) do
                 if math.random(20) <= 9 then
                     ped:setData('hc:text', unhappyText, true)
