@@ -40,6 +40,7 @@ addEventHandler('onResourceStart', resourceRoot, function()
 end)
 
 addEventHandler ( "onColShapeHit", resourceRoot, function(thePlayer, _)
+    outputDebugString("Hitted")
     local id = source:getData("hc:routerId")
     if getElementType ( thePlayer ) == "player" then
         triggerClientEvent(thePlayer, "renderMessageForRouter", root, true, id)
