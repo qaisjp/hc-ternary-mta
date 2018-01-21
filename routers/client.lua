@@ -73,9 +73,11 @@ function showWorkingScreen()
     quitBtn = guiCreateButton(240, 30,200,40, "Close", false, window)
 
     addEventHandler("onClientGUIClick", turnOffBtn, function()
+        outputDebugString("clicked")
         removeScreen("Wifi has been turned off!", window)
     end, false)
     addEventHandler("onClientGUIClick", quitBtn, function()
+        outputDebugString("clicked")
         removeScreen("Aborted", window)
     end, false)
 end
