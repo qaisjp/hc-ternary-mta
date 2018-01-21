@@ -25,8 +25,8 @@ end
 -- {2451.45044, -1628.72656, 228.42049}
 --  {2410.84326, -1665.77454, 228.42049}
 addEventHandler('onResourceStart', resourceRoot, function()
-    for i = 1,20 do
-        setTimer(spawnRubbish, math.random(20,60) * 1000, 1)
+    for i = 1,17 do
+        setTimer(spawnRubbish, math.random(20,250) * 1000, 1)
     end
     
 end)
