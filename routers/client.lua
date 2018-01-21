@@ -30,7 +30,7 @@ function shuffle(array)
 end
 
 function showFixScreen()
-    if(!hasAScreen) then
+    if(hasAScreen == false) then
         showCursor(true)
         local Width = 0.35
         local Height = 0.50
@@ -62,7 +62,7 @@ end
 
 
 function showWorkingScreen()
-    if(!hasAScreen) then
+    if(hasAScreen == false) then
         showCursor(true)
         local Width = 0.35
         local Height = 0.20
