@@ -44,11 +44,17 @@ function toggleOverview(player)
     player:setData('hc:overview', mode)
 
     toggleAllControls(player, not mode)
+    showCursor(player, mode)
     if mode then
         setCameraMatrix(player, 2388.3056640625, -1645.4122314453, 237.34294128418, 2488.1032714844, -1646.4276123047, 231.06507873535, 0, 70 )
     else
         setCameraTarget(player)
     end
+end
+
+function loadPlayer(player)
+    player:setData('hc:active', true)
+    bindKey(player, 'm', 'up', toggleOverview)
 end
 
 local confirmSkin
@@ -61,16 +67,17 @@ function confirmSkin(player)
     
     player.interior = 0
     player.position = Vector3(2430, -1659, 229)
-    player:setData('hc:active', true)
+
+    loadPlayer(player)
 
     player:setData('hc:overview', false)
     toggleOverview(player)
-    bindKey(player, 'm', 'up', toggleOverview)
 end
 
 addEvent('hc:onPlayerReady', true)
 addEventHandler('hc:onPlayerReady', root, function()
     if source:getData('hc:active') then
+        loadPlayer(source)
         return
     end
 
