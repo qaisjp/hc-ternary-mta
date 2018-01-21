@@ -105,11 +105,7 @@ end
 
 
 function hideHud()
-    setPlayerHudComponentVisible ("clock" , false )
-    setPlayerHudComponentVisible ("money" , false )
-    setPlayerHudComponentVisible ("health" , false )
-    setPlayerHudComponentVisible ("weapon" , false )
-    setPlayerHudComponentVisible ("radar" , false )
+    setPlayerHudComponentVisible ("all" , false )
     showChat(false)
 end
 
