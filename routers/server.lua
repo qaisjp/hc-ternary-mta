@@ -38,16 +38,16 @@ addEventHandler('onResourceStart', resourceRoot, function()
     sphere4 = createColSphere ( pos, 3 )
     sphere4:setData("hc:routerId", 4)
 
-    local routers = {
-        router1,
-        router2,
-        router3,
-        router4
+    local spheres = {
+        sphere1,
+        sphere2,
+        sphere3,
+        sphere4
     }
 
-    for _, router in ipairs(routers) do    
-        addEventHandler ( "onColShapeHit", router, collisionHandler)
-        addEventHandler ( "onColShapeLeave", router, leaveHandler)
+    for _, sphere in ipairs(spheres) do    
+        addEventHandler ( "onColShapeHit", sphere, collisionHandler)
+        addEventHandler ( "onColShapeLeave", sphere, leaveHandler)
     end
 end)
 
