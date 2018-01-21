@@ -137,7 +137,7 @@ addEvent('renderMessageForRouter', true)
 addEventHandler('renderMessageForRouter', root, function(shouldShow, rID)
     if(shouldShow) then
         renderTextAndSetStartTime("Press E to interact with the Router")
-        outputDebugString(tostring(getElementByID("router" .. tostring(rID)).getElementData("hc:broken")))
+        outputDebugString(tostring(getElementData(getElementByID("router" .. tostring(rID)), "hc:broken")))
         bindKey('e', 'up', showWorkingScreen)
         routerId = rID
     else
