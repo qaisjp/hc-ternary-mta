@@ -80,8 +80,7 @@ end
 
 function removeScreen(textToPut)
     destroyElement(wdwGame)
-    startTime = getTickCount()
-    text = textToPut
+    renderTextAndSetStartTime(textToPut)
     showCursor(false)
 end
 
@@ -106,7 +105,7 @@ function renderText()
 	
 	currentCount = getTickCount ()
     
-    if(currentCount < startTime + 5000) then
+    if(currentCount < startTime + 3000) then
         dxDrawRectangle (screenX *.40, screenY * .09, 400, 50, tocolor(0,0,0,150))
         dxDrawText ( text, screenX * .41, screenY * .1, screenX, screenY, tocolor(255,255,255), 2)
     end
@@ -117,6 +116,16 @@ function renderText()
 
 end
 
+function renderTextAndSetStartTime(textToRender)
+    text = textToRender
+    startTime = getTickCount()
+end
+
+function immediatlyRemoveText()
+    startTime = 0
+end
+
+
 
 addEvent('onHawaiiAlertReceived', true)
 addEventHandler('onHawaiiAlertReceived', root, showAlert)
@@ -124,7 +133,11 @@ addEventHandler('onHawaiiAlertReceived', root, showAlert)
 
 addEvent('renderMessageForRouter', true)
 addEventHandler('renderMessageForRouter', root, function(shouldShow, routerId)
-    outputDebugString(tostring(shouldShow) .. " and " .. tostring(routerId))
+    if(shouldShow) then
+        renderTextAndSetStartTime("Press E to interact with the Router")
+    else
+        immediatlyRemoveText()
+    end
 end)
 
 
