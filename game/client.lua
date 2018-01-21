@@ -1,7 +1,7 @@
 local state ='skin'
 addEventHandler('onClientResourceStart', resourceRoot, function()
     triggerServerEvent('hc:onPlayerReady', localPlayer)
-    if localPlayer:getData('hc:overview') then
+    if localPlayer:getData('hc:active') then
         state = 'pause'
     end
 

@@ -93,7 +93,12 @@ function confirmSkin(player)
     triggerClientEvent(player, 'hc:selectedSkin', player)
     
     player.interior = 0
-    player.position = Vector3(2438, -1645, 229)
+
+    local vec = Vector3(2443.13794, -1645.13977, 228.42049)
+    vec = vec + Vector3(math.random(-5, 5), math.random(-5, 5), 0)
+
+    player.position = vec
+    
 
     loadPlayer(player)
 
