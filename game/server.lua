@@ -44,6 +44,7 @@ function toggleOverview(player)
     player:setData('hc:overview', mode)
 
     toggleAllControls(player, not mode)
+    showCursor(player, mode)
     if mode then
         setCameraMatrix(player, 2388.3056640625, -1645.4122314453, 237.34294128418, 2488.1032714844, -1646.4276123047, 231.06507873535, 0, 70 )
     else
