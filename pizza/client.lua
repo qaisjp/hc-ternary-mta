@@ -177,3 +177,8 @@ addEventHandler('hc:pizza', root, function()
 end)
 
 addCommandHandler("pizza", renderWindow)
+
+addEventHandler('onClientResourceStart', resourceRoot, function()
+    local s = playSound3D('pizzatron.mp3', 375.82816, -115.50784, 1001.49219, true)
+    s.maxDistance = 15
+end)
